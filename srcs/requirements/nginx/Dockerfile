@@ -1,5 +1,6 @@
 # Use the Debian 11.8 base image
-FROM debian_imagen_local:latest
+#FROM debian_imagen_local:latest
+FROM debian:11.8
 # Install NGINX
 RUN apt-get update && apt-get install -y nginx
 # Copy NGINX configuration files

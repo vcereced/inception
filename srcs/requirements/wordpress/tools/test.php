@@ -8,8 +8,8 @@
 
 $servername = "mariadb";      
 $database = "mydatabasedg";         
-$username = "dbking";           
-$password = "dgarizad";       
+$username = "root";           
+$password = "123456";       
 
 
 // Create connection

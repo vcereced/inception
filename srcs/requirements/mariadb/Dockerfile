@@ -1,5 +1,6 @@
 # Use the official Debian image as the base image
-FROM debian_imagen_local:latest
+#FROM debian_imagen_local:latest
+FROM debian:11.8
 RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
 # Install necessary packages
 RUN apt-get update
