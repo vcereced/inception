@@ -1,7 +1,8 @@
 # Use the official Debian image as the base image
 #FROM debian_imagen_local:latest
 FROM debian:11.8
-RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
+#if dont match time between machines to update
+#RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
 # Install necessary packages
 RUN apt-get update
 RUN apt-get install -y mariadb-server
@@ -9,11 +10,11 @@ RUN rm -rf /var/lib/apt/lists/*
 # Create the directory for the MySQL socket
 RUN mkdir -p /run/mysqld/ && \
     chown -R mysql:mysql /run/mysqld/ && \
-    chmod -R 777 /run/mysqld
-# Set environment variables for MariaDB
-#NOT HERE.
-# Copy the initialization SQL script and .cnf file into the container
-COPY ./conf/init.sql /docker-entrypoint-initdb.d/
+    chmod -R 755 /run/mysqld 
+    #WACHT OUUUUUUUUUUUUUUT 777
+
+
+#COPY ./conf/init.sql /docker-entrypoint-initdb.d/
 COPY ./conf/init.sh /etc/mysql/
 RUN chmod +x /etc/mysql/init.sh
 # Expose the default MariaDB port

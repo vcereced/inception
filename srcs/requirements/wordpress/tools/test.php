@@ -7,9 +7,9 @@
 // $password = $_ENV['USER1_PASSWORD'];  //"dgarizad";
 
 $servername = "mariadb";      
-$database = "mydatabasedg";         
-$username = "root";           
-$password = "123456";       
+$database = "mydatabasevc";         
+$username = "invited";           
+$password = "vcereced";       
 
 
 // Create connection

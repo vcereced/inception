@@ -2,10 +2,13 @@
 #FROM debian_imagen_local:latest
 FROM debian:11.8
 # Install NGINX
-RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && apt-get install -y openssl && apt-get install -y nginx 
 # Copy NGINX configuration files
 COPY /conf/default.conf /etc/nginx/conf.d/
-COPY tools/server.crt tools/server.key /etc/nginx/
+#WACHT OUUUUUUUUT
+#COPY tools/server.crt tools/server.key /etc/nginx/
+COPY conf/init.sh .
+RUN chmod +x ./init.sh
 #COPY default.conf /etc/nginx/conf.d/default.conf
 RUN mv /etc/nginx/sites-enabled /etc/nginx/sites-enabled_copy
 # Install Tini
@@ -16,4 +19,5 @@ ENTRYPOINT ["/tini", "--"]
 # Expose port 443 for HTTPS
 EXPOSE 443
 # Start NGINX
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["bash", "init.sh"]
+#CMD ["nginx", "-g", "daemon off;"]
