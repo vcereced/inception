@@ -6,7 +6,7 @@ down:
 
 fclean:
 	docker-compose -f /home/vcereced/Desktop/inception/srcs/docker-compose.yml down -v 
-	docker image prune -a 
+	docker image prune -a
 	
 setup:
 	@(mkdir -p /home/vcereced/data/wpsite > /dev/null 2>&1 && echo "Created data/wpsite") || echo "data/wpsite already created"
